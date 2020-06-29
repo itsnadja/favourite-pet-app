@@ -1,0 +1,98 @@
+.App {
+  margin: 5px;
+  padding: 10px;
+  text-align: center;
+  color: #dfdfdf;
+  font-size: 20px;
+  background-color: #dfdfdf;
+}
+
+.Image-Div{
+  margin: 5px auto;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #282c34;
+  width: 900px;
+  box-shadow: 0px 4px 8px grey;
+  border-radius: 10px;
+  min-height: 90vh;
+  max-width: 80vw;
+
+}
+
+
+.Nav-Div{
+  margin: 0;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-evenly;
+}
+
+.Pet-Image{
+  position: center;
+  padding: 10px;
+  min-height: 50vh;
+  max-height: 65vh;
+  max-width: 70vw;
+}
+
+.List{
+  padding: 10px;
+  background-color: #e96868;
+  width: 900px;
+  max-width: 80vw;
+  min-height: 40vh;
+  box-shadow: 0px 4px 8px grey;
+  border-radius: 10px;
+  margin: 5px auto;
+  color: #dfdfdf;
+}
+button{
+  border:0;
+  padding: 10px 14px;
+  font-size: 15px;
+  border-radius: 100px;
+  background-color: #dfdfdf;
+}
+button:hover{
+  background-color: #85878a;
+  color:#ffffff;
+  cursor: pointer;
+}
+.delBtn{
+  padding: 10px 13px;
+  border-radius: 100px;
+}
+.nextBtn{
+  animation: blink 1.5s ease infinite alternate;
+}
+@keyframes blink{
+  from{background-color: #dfdfdf;}
+  to{background-color:#85878a;}
+}
+
+.saveBtn:hover{
+  cursor: pointer;
+  animation: color 0.2s ease-in-out forwards;
+}
+
+@keyframes color{
+  from{filter: invert(26%) sepia(75%) saturate(819%) hue-rotate(304deg) brightness(92%) contrast(101%)}
+  to{filter: invert(26%) sepia(75%) saturate(819%) hue-rotate(304deg) brightness(92%) contrast(101%)}
+}
+
+
+ul{
+  list-style-type: none;
+}
+
+li{
+display: flex;
+flex-direction: row;
+align-items: top;
+justify-content: center;
+}
