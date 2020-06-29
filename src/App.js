@@ -7,13 +7,17 @@ import './App.css';
 
 const catURL = "https://aws.random.cat/meow ";
 const dogURL = "https://random.dog/woof.json";
+let initialList = [];
 
-
-
+const ListAsString = localStorage.getItem("listItems");
+console.log(localStorage.getItem("listItems"));
+if(ListAsString){
+  initialList = JSON.parse(ListAsString); 
+}
 
 function App() {
   const [imgData, setImgData] = React.useState([]);
-  const [listItems, setListItems] = React.useState([]);
+  const [listItems, setListItems] = React.useState(initialList);
   const [update, setUpdate] = React.useState(0);
 
   
@@ -80,10 +84,18 @@ function App() {
 
   function AddImageToFavourites(){
   const ImgList = setListItems([...listItems, ImgElement])
+
+   const ListAsString = JSON.stringify(ImgList);
+    localStorage.setItem("listItems", ListAsString);
+    console.log(ListAsString);
   }
 
   function DeleteImageFromFavourites (indexToRemove){
-    const deleteImage = setListItems(listItems.filter((listItem, index) => indexToRemove !== index)); 
+    const deleteImage = setListItems(listItems.filter((listItem, index) => indexToRemove !== index));
+
+    const ListAsString = JSON.stringify(deleteImage);
+    localStorage.setItem("listItems", ListAsString);
+    console.log(ListAsString);
   }
  
   return (
