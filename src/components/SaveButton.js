@@ -3,7 +3,7 @@ import Heart from "../heart.svg"
 import '../App.css';
 
 export default function SaveButton(props){
-    const {onClickEvent} = props
+    const {onClickEvent} = props;
 
     function handleClick(){
         if (typeof onClickEvent === "function") onClickEvent();
@@ -14,7 +14,8 @@ export default function SaveButton(props){
              src={Heart} 
              alt="SaveButton" 
              className = "saveBtn"
-             onClick={handleClick}/>
+             onClick={handleClick}
+             />
            {/* <button className = "saveBtn" onClick={handleClick}>Save</button>*/}
         </div>
     );

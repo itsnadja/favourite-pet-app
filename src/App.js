@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-//import List from './components/List.js';
 import Heading from './components/Heading.js';
 import ListItem from './components/ListItem.js';
 import NavBar from './components/NavBar.js';
@@ -10,17 +9,15 @@ const dogURL = "https://random.dog/woof.json";
 let initialList = [];
 
 const ListAsString = localStorage.getItem("listItems");
-console.log(localStorage.getItem("listItems"));
-if(ListAsString){
-  initialList = JSON.parse(ListAsString); 
-}
+ if(ListAsString){
+  initialList = JSON.parse(ListAsString)
+};
+
 
 function App() {
   const [imgData, setImgData] = React.useState([]);
   const [listItems, setListItems] = React.useState(initialList);
   const [update, setUpdate] = React.useState(0);
-
-  
 
   const fetchCatData = async () => {
     let response = await fetch (catURL);
@@ -83,55 +80,52 @@ function App() {
   }
 
   function AddImageToFavourites(){
-  const ImgList = setListItems([...listItems, ImgElement])
+    const ImgList = [...listItems, ImgElement];
+    setListItems(ImgList);
+    console.log(ImgList)
 
-   const ListAsString = JSON.stringify(ImgList);
+    const ListAsString = JSON.stringify(ImgList);
     localStorage.setItem("listItems", ListAsString);
-    console.log(ListAsString);
+    console.log(ImgList);
+      
   }
 
   function DeleteImageFromFavourites (indexToRemove){
-    const deleteImage = setListItems(listItems.filter((listItem, index) => indexToRemove !== index));
+    const deleteImage = listItems.filter((listItem, index) => indexToRemove !== index);
+    setListItems(deleteImage);
 
     const ListAsString = JSON.stringify(deleteImage);
     localStorage.setItem("listItems", ListAsString);
-    console.log(ListAsString);
+    console.log(deleteImage);
+   
   }
  
   return (
     <div className="App">
       
       <div className="Image-Div">
-      <Heading heading = "Favourite Pet-App"/>
-        <div>{ImgElement}</div>
 
+        <Heading heading = "Favourite Pet-App"/>
+          <div>{ImgElement}</div>
+      
         <NavBar 
         onClickEvent= {handleClick}
         onSaveEvent= {AddImageToFavourites}
         />
+
       </div>
-    <div className = "List">
-          <Heading heading = "List of Favourites"/>
+
+      <div className = "List">
+        <Heading heading = "List of Favourites"/>
         <ul>
             {listItems.map((listItem, index) => (
               <ListItem 
               item = {listItem}
-              onClickEvent={() => DeleteImageFromFavourites(index)}
+              onClickEvent = {() => DeleteImageFromFavourites(index)}
               />
             ))}
         </ul>
       </div>
-
-       {/*   
-      <List 
-        onClickEvent = {() => DeleteImageFromFavourites(index)}
-        items = {listItems}
-        index = {index}
-        key = {listItems}
-        heading = "List of Favourites"
-        className = "List"
-      />*/}
-      
     </div>
     )
 };

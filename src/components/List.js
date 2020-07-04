@@ -9,7 +9,7 @@ export default function List (props){
     <div className = "List">
         <h1>{heading}</h1>
       <ul>
-          {items.map((item, index) => (
+          {items.map((item) => (
           <li key={key}>{item}
          
           <DeleteButton onClickEvent={onClickEvent}/>
