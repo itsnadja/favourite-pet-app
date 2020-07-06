@@ -1,20 +1,20 @@
 import React, { useEffect } from 'react';
 import Heading from './components/Heading.js';
-import ListItem from './components/ListItem.js';
+import ImgListItem from './components/ImgListItem.js';
+import List from './components/List.js';
 import NavBar from './components/NavBar.js';
 import './App.css';
 
 const catURL = "https://aws.random.cat/meow ";
 const dogURL = "https://random.dog/woof.json";
-let initialList = [];
-
-const ListAsString = localStorage.getItem("listItems");
- if(ListAsString){
-  initialList = JSON.parse(ListAsString)
-};
 
 
 function App() {
+ let initialList = JSON.parse(localStorage.getItem("listItems"));
+  if(!initialList){
+    initialList =  [];
+  };
+
   const [imgData, setImgData] = React.useState([]);
   const [listItems, setListItems] = React.useState(initialList);
   const [update, setUpdate] = React.useState(0);
@@ -80,9 +80,8 @@ function App() {
   }
 
   function AddImageToFavourites(){
-    const ImgList = [...listItems, ImgElement];
+    const ImgList = [...listItems, imgData];
     setListItems(ImgList);
-    console.log(ImgList)
 
     const ListAsString = JSON.stringify(ImgList);
     localStorage.setItem("listItems", ListAsString);
@@ -104,9 +103,8 @@ function App() {
     <div className="App">
       
       <div className="Image-Div">
-
         <Heading heading = "Favourite Pet-App"/>
-          <div>{ImgElement}</div>
+        <div>{ImgElement}</div>
       
         <NavBar 
         onClickEvent= {handleClick}
@@ -114,17 +112,18 @@ function App() {
         />
 
       </div>
-
+   
       <div className = "List">
         <Heading heading = "List of Favourites"/>
-        <ul>
+        <List>
             {listItems.map((listItem, index) => (
-              <ListItem 
-              item = {listItem}
+              <ImgListItem 
+              items = {listItem}
+              className = "Pet-Image"
               onClickEvent = {() => DeleteImageFromFavourites(index)}
               />
             ))}
-        </ul>
+        </List>
       </div>
     </div>
     )
