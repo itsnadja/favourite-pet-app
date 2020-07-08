@@ -1,13 +1,11 @@
 import React from 'react';
-import DeleteButton from "./DeleteButton.js";
 import '../App.css';
 
+export default function ImgElement(props){
+    const {items} = props;
 
-export default function ListItem (props){
-    const {items, onClickEvent, key} = props;
-  return (
-    <div>
-          <li key={key}>
+    return(
+        <div>
             {items.map(function(item){
              if(item.toString().endsWith(".mp4") || item.toString().endsWith(".webm")){
               return(
@@ -26,11 +24,6 @@ export default function ListItem (props){
                 />   
                 )}
             })}
-            
-          <DeleteButton onClickEvent={onClickEvent}/>
-          </li>      
- 
-    </div>
-  );
-};
- 
+        </div>
+    )
+}
